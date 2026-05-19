@@ -1,12 +1,17 @@
 const express=require("express");
 const db=require("./utils/database.js")
+const cors=require("cors");
 const userRoute=require("./routes/userRoute.js")
 const busRoute=require("./routes/busRoute.js")
+//model
+require("./models")
 const app=express();
 
 
-app.use(express.json());
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 app.use("/users",userRoute)
 app.use("/bus",busRoute)
